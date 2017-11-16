@@ -69,7 +69,6 @@ Toutes les pages html se trouvent dans src/main/resources/templates.
 
 * **Kevin ABRIAL**
 
-
 * **Amine IDIR**
 
 * **Alexis BARTHELEMY**
