@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Delete Account</title>
+
+    <link rel="icon" href="../../../../favicon.ico">
+
+     <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css" rel="stylesheet">
+</head>
+
+<body>
+	<header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" th:href="@{/}" >Home : <span th:text="*{userName}"></span>, Your role : <span th:text="*{userRole}"></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/index#ToMiddle}">Description</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/index#ToBottom}">Help</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container marketing">
+		<br/>
+		<form autocomplete="off" action="#" th:action="@{/delete}"
+					th:object="${theUser}" method="post" class="form-horizontal"
+					role="form">
+			<h3 class="form-signin-heading">Delete Account</h3>
+			<br/>
+			<button class="btn btn-lg btn-danger btn-block" name="Submit" type="Submit" onclick="return confirm('Are you sure you want to delete your account ?');"> Delete Account</button>
+		</form>
+	</div>
+					
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Login</title>
+
+
+     <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css" rel="stylesheet">
+</head>
+
+<body>
+	<header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" th:href="@{/index}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+           <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/registration}">Sign up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/index#ToMiddle}">Description</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/index#ToBottom}">Help</a>
+            </li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+	
+	<div class="container marketing">
+		<br/>
+		<form th:action="@{/login}" method="POST" class="form-signin">
+			<h3 class="form-signin-heading" th:text="Welcome"></h3>
+			<br/>
+			 
+			<input type="text" name="username"  th:placeholder="Username..."
+				class="form-control" required="required"/> <br/> 
+			<input type="password"  th:placeholder="Password..."
+				id="password" name="password" class="form-control" required="required"/> <br /> 
+				
+			<div align="center" th:if="${param.error}">
+				<p style="font-size: 20; color: #FF1C19;">Login or Password invalid, please verify</p>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit">Sign in</button>
+		</form>
+	</div>
+</body>
+</html>

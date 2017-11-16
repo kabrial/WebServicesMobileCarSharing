@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" th:href="@{../images/ico.png}">
+
+    <title>Profil</title>
+
+     <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+ 
+		<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#search').DataTable();
+			} );
+		</script>
+  </head>
+<body>
+	<header>
+	      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	        <a class="navbar-brand" th:href="@{/}" >Home : <span th:text="*{userName}"></span>, Your role : <span th:text="*{userRole}"></span></a>
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	          <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarCollapse">
+	           <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/#ToMiddle}">Description</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/#ToBottom}">Help</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+            </ul>
+	        </div>
+	      </nav>
+    </header>
+
+	<br/>
+	<table id="search" class="table table-hover">
+	
+		<thead>
+		
+			<tr>
+				<th>Identifier User</th>
+				<th>Username</th>
+				<th>Role User</th>
+				<th>Update</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="profil : ${listProfil}" id="tabCount" th:inline="text">
+				<td th:text="${profil.id}"></td>
+				<td th:text="${profil.username}"></td>
+				<td th:text="${profil.userrole}"></td>
+				<td th:switch="${profil.username}">
+				<p th:case="${userName}"><a type="button" class="btn btn-danger">Not Available <br/>is your profil</a></p>
+				<p th:case="*"><a type="button" class="btn btn-success" th:href="@{'/profil/' + ${profil.id}}">Update</a></p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</body>
+</html>
