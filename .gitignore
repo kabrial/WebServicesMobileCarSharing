@@ -1,5 +1,4 @@
 target/
-src/main/resources/application.properties
 application.properties
 # Compiled class file
 *.class
