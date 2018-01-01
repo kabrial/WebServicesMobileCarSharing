@@ -2,6 +2,7 @@ package com.carSharing.model;
 
 import java.io.Serializable;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,10 +21,16 @@ public class TripChild implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -757080301618885120L;
+	@EmbeddedId
+	private TripChildPK id;
+
 	@ManyToOne
 	private Trip trip;
 	@ManyToOne
 	private Child child;
+
+	public TripChild() {
+	}
 
 	public Trip getTrip() {
 		return trip;

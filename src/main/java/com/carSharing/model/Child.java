@@ -36,6 +36,9 @@ public class Child implements Serializable {
 	@OneToMany(mappedBy = "child")
 	private List<TripChild> tripChilds;
 
+	public Child() {
+	}
+
 	public Long getId() {
 		return id;
 	}

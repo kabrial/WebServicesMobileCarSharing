@@ -15,73 +15,95 @@ import javax.persistence.Transient;
 
 /**
  * Model user
+ * 
  * @author Kevin ABRIAL & Amine IDIR & Alexis BARTHELEMY
  *
  */
 
 @Entity
 @Table(name = "user")
-public class User implements Serializable{
-    
-    private static final long serialVersionUID = -5166964930770526119L;
-    
-    private Long id;
-    private String username;
-    private String password;
-    private String passwordConfirm;
-    private Set<Role> roles;
-    private String userrole;
+public class User implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
+	private static final long serialVersionUID = -5166964930770526119L;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	private Long id;
+	private String username;
+	private String password;
+	private String lastname;
+	private String firstname;
+	private String passwordConfirm;
+	private Set<Role> roles;
+	private String userrole;
 
-    public String getUsername() {
-        return username;
-    }
+	public String getLastname() {
+		return lastname;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    public String getUserrole() {
-        return userrole;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
 
-    public void setUserrole(String userrole) {
-        this.userrole = userrole;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
-        return roles;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+	public User() {
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUserrole() {
+		return userrole;
+	}
+
+	public void setUserrole(String userrole) {
+		this.userrole = userrole;
+	}
+
+	@Transient
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 }

@@ -40,6 +40,9 @@ public class Trip implements Serializable {
 	@OneToMany(mappedBy = "trip")
 	private List<TripChild> tripChilds;
 
+	public Trip() {
+	}
+
 	public Long getId() {
 		return id;
 	}

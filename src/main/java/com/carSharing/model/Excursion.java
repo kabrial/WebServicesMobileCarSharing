@@ -33,6 +33,9 @@ public class Excursion implements Serializable {
 	@OneToMany(mappedBy = "excursion")
 	private List<ExcursionGroup> excursionGroups;
 
+	public Excursion() {
+	}
+
 	public Long getId() {
 		return id;
 	}
