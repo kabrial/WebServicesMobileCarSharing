@@ -25,6 +25,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
+          	<li class="nav-item">
+              <a class="nav-link" th:href="@{/create}">Create</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/search}">Search</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" th:href="@{/#ToMiddle}">Description</a>
             </li>
@@ -58,9 +64,9 @@
             <img class="first-slide"  >
             <div class="container">
               <div class="carousel-caption text-left">
-                <h1>Create an account</h1>
-                <p>To see some graph or anything.</p>
-                <p><a class="btn btn-lg btn-primary" href="/registration" role="button">Sign up today</a></p>
+                <h1>Search a trip</h1>
+                <p>Click to search a trip</p>
+                <p><a class="btn btn-lg btn-primary" href="/search" role="button">Search</a></p>
               </div>
             </div>
           </div>
@@ -68,9 +74,9 @@
             <img class="second-slide" >
             <div class="container">
               <div class="carousel-caption">
-                <h1>Description about this page</h1>
-                <p>See the documentation</p>
-                <p><a class="btn btn-lg btn-primary" href="/#ToMiddle" role="button">Learn more</a></p>
+                <h1>Create a trip</h1>
+                <p>Click to create a trip</p>
+                <p><a class="btn btn-lg btn-primary" href="/create" role="button">Create</a></p>
               </div>
             </div>
           </div>

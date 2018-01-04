@@ -44,6 +44,14 @@
 			<h3 class="form-signin-heading" th:text="Registration"></h3>
 			<br/>
 			 
+			 				<input type="text" th:field="*{firstname}"
+								placeholder="Firstname..." class="form-control" required="required" maxlength="32"/> 
+										<label style="font-size: 20; color: #FF1C19;" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"
+								class="validation-message"></label> <br/> 
+								<input type="text" th:field="*{lastname}"
+								placeholder="Lastname..." class="form-control" required="required" maxlength="32"/> 
+										<label style="font-size: 20; color: #FF1C19;" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"
+								class="validation-message"></label> <br/> 
 							<input type="text" th:field="*{username}"
 								placeholder="Username..." class="form-control" required="required" maxlength="32"/> 
 										<label style="font-size: 20; color: #FF1C19;" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
