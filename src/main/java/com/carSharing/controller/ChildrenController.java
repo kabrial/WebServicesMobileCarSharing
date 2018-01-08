@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping(path="/create")
-public class TripCreateController {
+@RequestMapping(path="/children")
+public class ChildrenController {
 
-    
     @GetMapping
     public String displayCreate(Model model){
-        return "create";
+        return "children";
     }
-    
 }

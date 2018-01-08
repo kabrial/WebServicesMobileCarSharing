@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 04 Janvier 2018 à 23:52
+-- Généré le :  Lun 08 Janvier 2018 à 14:16
 -- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.16.04.1
 
@@ -41,7 +41,8 @@ CREATE TABLE `child` (
 
 CREATE TABLE `excursion` (
   `id` bigint(20) NOT NULL,
-  `days` bigint(20) NOT NULL
+  `days` bigint(20) NOT NULL,
+  `name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -136,8 +137,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `password`, `username`, `userrole`) VALUES
-(1, 'Admin', 'Admin', '$2a$10$tYKPqBBZ6Wcny11bq.JFS.xqW51O0bq.L7EmBbQl6eSwmfa222B4i', 'useradmin', 'ADMIN'),
-(2, 'User', 'User', '$2a$10$dbkMotmpW4WPtG/6ri9sVOF1DH5a7oExEjsbiZpc3goGiCazVH.mC', 'usersuser', 'USER');
+(1, 'Admin', 'Admin', '$2a$10$PNvADLfn2jTF9eTtF.6Quuo8nYrfHYpiCsUL7h39KXre2WVoAF7xy', 'useradmin', 'ADMIN'),
+(2, 'User', 'User', '$2a$10$ynDjrzmVpW7vZLmNLt/wEeF32eKK/Yo1vUPnXO3euwR0h0jypU5DW', 'useruser', 'USER');
 
 -- --------------------------------------------------------
 
@@ -243,7 +244,7 @@ ALTER TABLE `excursion`
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `trip`
 --

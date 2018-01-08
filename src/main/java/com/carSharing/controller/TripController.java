@@ -6,16 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Trip Search Controller
+ * Trip Controller
  * @author Kevin ABRIAL & Amine IDIR & Alexis BARTHELEMY
  *
  */
 @Controller
-@RequestMapping(path="/search")
-public class TripSearchController {
+@RequestMapping(path="/trips")
+public class TripController {
+
     
     @GetMapping
-    public String displaySearch(Model model){
-        return "search";
+    public String displayCreate(Model model){
+        return "trip";
     }
+    
 }

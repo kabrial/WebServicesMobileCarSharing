@@ -28,7 +28,20 @@ public class Excursion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private long days;
-	@OneToMany(mappedBy = "excursion")
+	private String name;
+	
+    public String getName() {
+    
+        return name;
+    }
+
+    
+    public void setName(String name) {
+    
+        this.name = name;
+    }
+
+    @OneToMany(mappedBy = "excursion")
 	private List<Trip> trips;
 	@OneToMany(mappedBy = "excursion")
 	private List<ExcursionGroup> excursionGroups;
