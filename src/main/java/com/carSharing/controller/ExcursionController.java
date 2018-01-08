@@ -5,17 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.carSharing.form.ExcursionForm;
 import com.carSharing.model.Excursion;
-import com.carSharing.model.User;
-import com.carSharing.repository.ExcursionRepository;
-import com.carSharing.repository.UserRepository;
 import com.carSharing.service.ExcursionService;
 
 import lombok.AllArgsConstructor;
@@ -42,15 +38,16 @@ public class ExcursionController {
     }
     
     @RequestMapping(value="/createExcursions", method = RequestMethod.GET)
-    public String displayCreate(@ModelAttribute ExcursionForm excursionForm, Model model){
-        
+    public String displayCreate(@ModelAttribute Excursion excursion, Model model){
+        model.addAttribute("theExcursion", excursion);
         return "createExcursion";
     }
     
     @RequestMapping(value = "/createExcursions", method = RequestMethod.POST)
-    public String registration(@ModelAttribute ExcursionForm excursionForm, Model model) {
-        excursionService.save(excursionForm);
-        return "excursion";
+    public String updateCreate(@ModelAttribute Excursion excursion, Model model) {
+        model.addAttribute("theExcursion", excursion);
+        excursionService.save(excursion);
+        return "redirect:/excursions";
     }
     
 }

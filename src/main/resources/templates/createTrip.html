@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>Create Trip</title>
+
+    <link rel="icon" href="../../../../favicon.ico">
+
+     <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css" rel="stylesheet">
 </head>
+
 <body>
+	<header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" th:href="@{/}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/index#ToMiddle}">Description</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/index#ToBottom}">Help</a>
+            </li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container marketing">
+		<form autocomplete="off" action="#" th:action="@{'/trips/createTrips/' + ${id}}"
+				 th:object="${theTrip}" method="post" class="form-horizontal"
+					role="form">
+			<h3 class="form-signin-heading" th:text="Excursion"></h3>
+			<br/>
+			 
+			 				<input type="number" th:field="*{numberPlaces}"
+								placeholder="Number Places..." class="form-control" required="required" step="1"/> 
+							   <br/> 
+								<input type="date" th:field="*{dateDepart}"
+								placeholder="Date de Depart..." class="form-control" required="required" maxlength="32"/> 
+									<br/> 
+	
+				<br />
+			<button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit">Create Trip</button>
+			<span style="font-size: 20; color: #9FE855;" th:utext="${successMessage}"></span>
+		</form>
+		
+	</div>
+					
 
 </body>
 </html>

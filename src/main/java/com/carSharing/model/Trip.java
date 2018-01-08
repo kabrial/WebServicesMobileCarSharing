@@ -1,7 +1,6 @@
 package com.carSharing.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -29,7 +28,7 @@ public class Trip implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Date dateDepart;
+	private String dateDepart;
 	private long numberPlaces;
 	@ManyToOne
 	private User parent;
@@ -51,11 +50,11 @@ public class Trip implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDateDepart() {
+	public String getDateDepart() {
 		return dateDepart;
 	}
 
-	public void setDateDepart(Date dateDepart) {
+	public void setDateDepart(String dateDepart) {
 		this.dateDepart = dateDepart;
 	}
 

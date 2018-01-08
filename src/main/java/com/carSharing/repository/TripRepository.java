@@ -12,4 +12,8 @@ import com.carSharing.model.Trip;
 public interface TripRepository extends JpaRepository<Trip, Long> {
 
     List<Trip> findByExcursionId(Long id);
+    
+
+    @Query(value = "SELECT MAX(id) FROM trip ", nativeQuery = true)
+    Long getMaxId();
 }

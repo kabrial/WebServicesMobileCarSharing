@@ -2,12 +2,11 @@ package com.carSharing.service;
 
 import java.util.List;
 
-import com.carSharing.form.ExcursionForm;
 import com.carSharing.model.Excursion;
 
 public interface ExcursionService {
     
-    void save(ExcursionForm excursionForm);
+    void save(Excursion excursion);
     
     List<Excursion> findAll();
 }

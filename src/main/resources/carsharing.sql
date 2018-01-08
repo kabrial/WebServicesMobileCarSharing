@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 08 Janvier 2018 à 14:16
+-- Généré le :  Lun 08 Janvier 2018 à 23:21
 -- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.16.04.1
 
@@ -85,7 +85,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 
 CREATE TABLE `trip` (
   `id` bigint(20) NOT NULL,
-  `date_depart` datetime DEFAULT NULL,
+  `date_depart` varchar(255) DEFAULT NULL,
   `number_places` bigint(20) NOT NULL,
   `excursion_id` bigint(20) DEFAULT NULL,
   `parent_id` bigint(20) DEFAULT NULL
@@ -137,8 +137,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `password`, `username`, `userrole`) VALUES
-(1, 'Admin', 'Admin', '$2a$10$PNvADLfn2jTF9eTtF.6Quuo8nYrfHYpiCsUL7h39KXre2WVoAF7xy', 'useradmin', 'ADMIN'),
-(2, 'User', 'User', '$2a$10$ynDjrzmVpW7vZLmNLt/wEeF32eKK/Yo1vUPnXO3euwR0h0jypU5DW', 'useruser', 'USER');
+(1, 'Admin', 'Admin', '$2a$10$OKMEABGLg8vJyGlNMQKwm.ftPUh8nxNQ5M2IbO9V4qootui5dvRA2', 'useradmin', 'ADMIN'),
+(2, 'User', 'User', '$2a$10$sAa/v4cyNXiLXK1ub0NhpOnJHjXlsRiDVe0DeXHGa9NDQs9AEcmRq', 'useruser', 'USER');
 
 -- --------------------------------------------------------
 
