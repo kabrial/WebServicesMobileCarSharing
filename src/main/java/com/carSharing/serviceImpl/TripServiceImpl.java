@@ -8,14 +8,18 @@ import com.carSharing.model.Trip;
 import com.carSharing.repository.TripRepository;
 import com.carSharing.service.TripService;
 
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class TripServiceImpl implements TripService {
 
     // Repository
     final TripRepository tripRepository;
+    
+    // Contructor
+    public TripServiceImpl(TripRepository tripRepository) {
+        this.tripRepository = tripRepository;
+    }
+    
     
     public List<Trip> findAllById(Long id) {
         return tripRepository.findByExcursionId(id);

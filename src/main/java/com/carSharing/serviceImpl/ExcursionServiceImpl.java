@@ -9,14 +9,17 @@ import com.carSharing.model.Excursion;
 import com.carSharing.repository.ExcursionRepository;
 import com.carSharing.service.ExcursionService;
 
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class ExcursionServiceImpl implements ExcursionService {
 
     // Repository
     final ExcursionRepository excursionRepository;
+    
+    // Contructor
+    public ExcursionServiceImpl(ExcursionRepository excursionRepository) {
+        this.excursionRepository = excursionRepository;
+    }
     
     public void save(ExcursionForm excursionForm) {
         excursionForm.setDays(excursionForm.getDays());
