@@ -17,7 +17,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "group")
+@Table(name = "groups")
 public class Group implements Serializable {
 
 	/**

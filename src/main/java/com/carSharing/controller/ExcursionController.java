@@ -11,8 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.carSharing.form.ExcursionForm;
 import com.carSharing.model.Excursion;
+import com.carSharing.model.ExcursionGroup;
+import com.carSharing.model.Group;
+import com.carSharing.repository.ExcursionGroupRepository;
+import com.carSharing.repository.GroupRepository;
 import com.carSharing.service.ExcursionService;
+import com.carSharing.service.GroupService;
 
 import lombok.AllArgsConstructor;
 
@@ -29,6 +35,14 @@ public class ExcursionController {
     // Repository
     @Autowired
     private ExcursionService excursionService;
+    @Autowired
+    GroupService groupService;
+    
+    @Autowired
+    GroupRepository groupRepository;
+    
+    @Autowired
+    ExcursionGroupRepository excursionGroupRepository;
     
     @GetMapping
     public String display(Model model){
@@ -38,15 +52,25 @@ public class ExcursionController {
     }
     
     @RequestMapping(value="/createExcursions", method = RequestMethod.GET)
-    public String displayCreate(@ModelAttribute Excursion excursion, Model model){
+    public String displayCreate(@ModelAttribute ExcursionForm excursion, Model model){
         model.addAttribute("theExcursion", excursion);
+        model.addAttribute("groups", groupService.findAll());
         return "createExcursion";
     }
     
     @RequestMapping(value = "/createExcursions", method = RequestMethod.POST)
-    public String updateCreate(@ModelAttribute Excursion excursion, Model model) {
+    public String updateCreate(@ModelAttribute ExcursionForm excursion, Model model) {
         model.addAttribute("theExcursion", excursion);
-        excursionService.save(excursion);
+        System.err.println(excursion.getGroups());
+        Excursion ex=excursionService.save(excursion);
+        for(String i : excursion.getGroups()){
+            ExcursionGroup exgrp = new ExcursionGroup();
+            System.err.println("ICI"+Long.parseLong(i));
+            Group group= groupRepository.findOne(Long.parseLong(i));
+            exgrp.setExcursion(ex);
+            exgrp.setGroup(group);
+            excursionGroupRepository.save(exgrp);
+        }
         return "redirect:/excursions";
     }
     

@@ -11,47 +11,55 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ChildForm implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5203615009706048196L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5203615009706048196L;
 
-	@Id
-	private Long id;
-	private String name;
-	private String groupName;
+    @Id
+    private Long id;
+    private String name;
+    private String groupName;
+    private Long idGroup;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Long id) {
 
-	public void setName(String name) {
-		this.name = name;
-	}
+        this.id = id;
+    }
 
-	public String getGroupName() {
-		return groupName;
-	}
+    public String getName() {
 
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
+        return name;
+    }
 
-	public Long getIdGroup() {
-		return idGroup;
-	}
+    public void setName(String name) {
 
-	public void setIdGroup(Long idGroup) {
-		this.idGroup = idGroup;
-	}
+        this.name = name;
+    }
 
-	private Long idGroup;
+    public String getGroupName() {
+
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+
+        this.groupName = groupName;
+    }
+
+    public Long getIdGroup() {
+
+        return idGroup;
+    }
+
+    public void setIdGroup(Long idGroup) {
+
+        this.idGroup = idGroup;
+    }
+
 }

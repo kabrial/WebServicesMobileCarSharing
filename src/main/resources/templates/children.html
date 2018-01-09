@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <title>Children</title>
@@ -8,58 +7,51 @@
 <link rel="icon" href="../../../../favicon.ico">
 
 <!-- Bootstrap core CSS -->
-<link href="https://getbootstrap.com/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link
-	href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css"
-	rel="stylesheet">
+<link href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css" rel="stylesheet">
 </head>
 
 <body>
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" th:href="@{/index}">Home</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarCollapse" aria-controls="navbarCollapse"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/index#ToMiddle}">Description</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/index#ToBottom}">Help</a></li>
-				</ul>
-			</div>
-		</nav>
-	</header>
-	<div class="container marketing">
-		<table id="search" class="table table-hover">
+				<header>
+								<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+												<a class="navbar-brand" th:href="@{/index}">Home</a>
+												<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+																aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+																<span class="navbar-toggler-icon"></span>
+												</button>
+												<div class="collapse navbar-collapse" id="navbarCollapse">
+																<ul class="navbar-nav mr-auto">
+																				<li class="nav-item"><a class="nav-link" th:href="@{/index#ToMiddle}">Description</a></li>
+																				<li class="nav-item"><a class="nav-link" th:href="@{/index#ToBottom}">Help</a></li>
+																</ul>
+												</div>
+								</nav>
+				</header>
+				<div class="container marketing">
+								<table id="search" class="table table-hover">
 
-			<thead>
+												<thead>
 
-				<tr>
-					<th>Name</th>
-					<th>Groups</th>
-					<th></th>
+																<tr>
+																				<th>Name</th>
+																				<th>Groups</th>
+																				<th></th>
 
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="child : ${children}" id="tabCount" th:inline="text">
-					<td th:text="${child.name}"></td>
-					<td th:text="${child.groupName}"></td>
-					<td><a type="button" class="btn btn-success"
-						th:href="@{'/deleteChild/' + ${child.id}}">Delete</a></td>
-				</tr>
-			</tbody>
-		</table>
-		<a type="button" class="btn btn-success"
-			th:href="@{/children/createChild}">Create Child</a>
-	</div>
+																</tr>
+												</thead>
+												<tbody>
+																<tr th:each="child : ${children}" id="tabCount" th:inline="text">
+																				<td th:text="${child.name}"></td>
+																				<td th:text="${child.groupName}"></td>
+																				<td><a type="button" class="btn btn-success"
+																								th:href="@{'/children/deleteChild/' + ${child.id}}">Delete</a></td>
+																</tr>
+												</tbody>
+								</table>
+								<a type="button" class="btn btn-success" th:href="@{/children/createChild}">Create Child</a>
+				</div>
 
 
 </body>

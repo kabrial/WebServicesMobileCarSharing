@@ -27,62 +27,68 @@ import com.carSharing.service.UserService;
  * Trip Create Controller
  * 
  * @author Kevin ABRIAL & Amine IDIR & Alexis BARTHELEMY
- *
  */
 @Controller
 @RequestMapping(path = "/children")
 public class ChildrenController {
 
-	@Autowired
-	private ChildrenService childrenService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private GroupService groupService;
+    @Autowired
+    private ChildrenService childrenService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private GroupService groupService;
 
-	@GetMapping
-	public String display(Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findByUsername(auth.getName());
-		List<Child> children = childrenService.findByParent(user);
-		List<ChildForm> childs = new ArrayList<>();
-		for (Child child : children) {
-			ChildForm childForm = new ChildForm();
-			childForm.setId(child.getId());
-			childForm.setGroupName(child.getGroup().getName());
-			childForm.setName(child.getName());
-		}
-		model.addAttribute("children", childs);
-		return "children";
-	}
+    @GetMapping
+    public String display(Model model) {
 
-	@RequestMapping(value = "/createChild", method = RequestMethod.GET)
-	public String displayCreate(@ModelAttribute ChildForm childForm, Model model) {
-		model.addAttribute("groups", groupService.findAll());
-		return "createChild";
-	}
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        List<Child> children = childrenService.findByParent(user);
+        System.err.println(children.size());
+        List<ChildForm> childs = new ArrayList<>();
+        for (Child child : children) {
+            ChildForm childForm = new ChildForm();
+            childForm.setId(child.getId());
+            childForm.setGroupName(child.getGroup().getName());
+            childForm.setName(child.getName());
+            childs.add(childForm);
+        }
+        model.addAttribute("children", childs);
+        return "children";
+    }
 
-	@RequestMapping(value = "/deleteChild/{childId}", method = RequestMethod.GET)
-	public String delete(@PathVariable Long childId, Model model) {
-		childrenService.delete(childId);
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findByUsername(auth.getName());
-		List<Child> children = childrenService.findByParent(user);
-		model.addAttribute("children", children);
-		return "children";
-	}
+    @RequestMapping(value = "/createChild", method = RequestMethod.GET)
+    public String displayCreate(@ModelAttribute ChildForm childForm, Model model) {
 
-	@RequestMapping(value = "/createChild", method = RequestMethod.POST)
-	public String registration(@ModelAttribute ChildForm childForm, Model model) {
-		Child child = new Child();
-		child.setGroup(groupService.findOne(childForm.getIdGroup()));
-		child.setName(childForm.getName());
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findByUsername(auth.getName());
-		child.setParent(user);
-		childrenService.save(child);
-		List<Child> children = childrenService.findByParent(user);
-		model.addAttribute("children", children);
-		return "children";
-	}
+        model.addAttribute("groups", groupService.findAll());
+        model.addAttribute("child", childForm);
+        return "createChild";
+    }
+
+    @RequestMapping(value = "/deleteChild/{childId}", method = RequestMethod.GET)
+    public String delete(@PathVariable Long childId, Model model) {
+
+        childrenService.delete(childId);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        List<Child> children = childrenService.findByParent(user);
+        model.addAttribute("children", children);
+        return "redirect:/children";
+    }
+
+    @RequestMapping(value = "/createChild", method = RequestMethod.POST)
+    public String registration(@ModelAttribute ChildForm childForm, Model model) {
+
+        Child child = new Child();
+        child.setGroup(groupService.findOne(childForm.getIdGroup()));
+        child.setName(childForm.getName());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        child.setParent(user);
+        childrenService.save(child);
+        List<Child> children = childrenService.findByParent(user);
+        model.addAttribute("children", children);
+        return "redirect:/children";
+    }
 }
