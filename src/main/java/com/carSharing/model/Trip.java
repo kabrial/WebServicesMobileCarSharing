@@ -29,13 +29,24 @@ public class Trip implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String dateDepart;
-	private long numberPlaces;
-	@ManyToOne
+    private long numberPlaces;
+    private long placesReserved;
+	
+    public long getPlacesReserved() {
+    
+        return placesReserved;
+    }
+
+    
+    public void setPlacesReserved(long placesReserved) {
+    
+        this.placesReserved = placesReserved;
+    }
+
+    @ManyToOne
 	private User parent;
 	@ManyToOne
 	private Excursion excursion;
-	@OneToMany(mappedBy = "trip")
-	private List<TripParent> trips;
 	@OneToMany(mappedBy = "trip")
 	private List<TripChild> tripChilds;
 
@@ -80,14 +91,6 @@ public class Trip implements Serializable {
 
 	public void setExcursion(Excursion excursion) {
 		this.excursion = excursion;
-	}
-
-	public List<TripParent> getTrips() {
-		return trips;
-	}
-
-	public void setTrips(List<TripParent> trips) {
-		this.trips = trips;
 	}
 
 	public List<TripChild> getTripChilds() {

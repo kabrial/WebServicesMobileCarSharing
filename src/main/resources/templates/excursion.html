@@ -1,59 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Excursion</title>
+<title>Excursion</title>
 
-    <link rel="icon" href="../../../../favicon.ico">
+<link rel="icon" href="../../../../favicon.ico">
 
-     <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css" rel="stylesheet">
 </head>
 
 <body>
-	<header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" th:href="@{/}">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/index#ToMiddle}">Description</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/index#ToBottom}">Help</a>
-            </li>
-            </ul>
-        </div>
-      </nav>
-    </header>
-    <div class="container marketing">
-    <table id="search" class="table table-hover">
-	
-		<thead>
-		
-			<tr>
-				<th>Name</th>
-				<th></th>
+				<header>
+								<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+												<a class="navbar-brand" th:href="@{/}">Home</a>
+												<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+																aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+																<span class="navbar-toggler-icon"></span>
+												</button>
+												<div class="collapse navbar-collapse" id="navbarCollapse">
+																<ul class="navbar-nav mr-auto">
+																				<li class="nav-item"><a class="nav-link" th:href="@{/index#ToMiddle}">Description</a></li>
+																				<li class="nav-item"><a class="nav-link" th:href="@{/index#ToBottom}">Help</a></li>
+																</ul>
+												</div>
+								</nav>
+				</header>
+				<div class="container marketing">
+								<table id="search" class="table table-hover">
 
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="excursion : ${listExcursion}" id="tabCount" th:inline="text">
-				<td th:text="${excursion.name}"></td>
-				<td><a type="button" class="btn btn-success" th:href="@{'/trips/' + ${excursion.id}}">Voir Trajet</a></td>
-			</tr>
-		</tbody>
-	</table>
-		 <a type="button" class="btn btn-success" th:href="@{/excursions/createExcursions}">Create Excursion</a>       
-	</div>
-		
+												<thead>
+
+																<tr>
+																				<th>Name</th>
+																				<th>Days</th>
+																				<th>Groups</th>
+
+																</tr>
+												</thead>
+												<tbody>
+																<tr th:each="excursion : ${listExcursion}" id="tabCount" th:inline="text">
+																				<td th:text="${excursion.name}"></td>
+																				<td th:text="${excursion.days}"></td>
+																				<td><SELECT>
+																												<OPTION th:each="group : ${excursion.groups}" th:value="${group}" th:inline="text">[[${group}]]</OPTION>
+																				</SELECT></td>
+																				<td><a type="button" class="btn btn-success" th:href="@{'/trips/' + ${excursion.id}}">Voir
+																												Trajet</a></td>
+																</tr>
+												</tbody>
+								</table>
+								<a type="button" class="btn btn-success" th:href="@{/excursions/createExcursions}">Create Excursion</a>
+				</div>
+
 
 </body>
 </html>

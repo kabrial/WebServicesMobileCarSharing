@@ -24,7 +24,19 @@ public class TripChild implements Serializable {
 	@EmbeddedId
 	private TripChildPK id;
 
-	@ManyToOne
+	
+    public TripChildPK getId() {
+    
+        return id;
+    }
+
+    
+    public void setId(TripChildPK id) {
+    
+        this.id = id;
+    }
+
+    @ManyToOne
 	private Trip trip;
 	@ManyToOne
 	private Child child;

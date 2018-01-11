@@ -45,7 +45,6 @@ public class ChildrenController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
         List<Child> children = childrenService.findByParent(user);
-        System.err.println(children.size());
         List<ChildForm> childs = new ArrayList<>();
         for (Child child : children) {
             ChildForm childForm = new ChildForm();

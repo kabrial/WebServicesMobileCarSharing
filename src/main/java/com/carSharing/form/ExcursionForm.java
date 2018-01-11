@@ -14,6 +14,7 @@ public class ExcursionForm implements Serializable {
      * 
      */
     private static final long serialVersionUID = -3106847554667809748L;
+    private long id;
     private long days;
     private String name;
     private List<String> groups;
@@ -46,6 +47,16 @@ public class ExcursionForm implements Serializable {
     public void setGroups(List<String> groups) {
 
         this.groups = groups;
+    }
+
+    public long getId() {
+
+        return id;
+    }
+
+    public void setId(long id) {
+
+        this.id = id;
     }
 
 }
