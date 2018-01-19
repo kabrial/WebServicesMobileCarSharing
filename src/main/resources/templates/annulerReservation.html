@@ -35,7 +35,7 @@
 												<thead>
 
 																<tr>
-																				<th>Excursion</th>
+																				<th>Excursion Parent With Children</th>
 																				<th>Supprimer Reservation</th>
 
 																</tr>
@@ -62,10 +62,10 @@
 																</tr>
 												</thead>
 												<tbody>
-																<tr th:each="child : ${listChildNew}" id="tabCount" th:inline="text">
-																				<td th:text="${child.parent.trip.excursion.name}"></td>
+																<tr th:each="listChild : ${listChildNew}" id="tabCount" th:inline="text">
+																				<td th:text="${listChild.child.name}"></td>
 																				<td><a type="button" class="btn btn-danger"
-																								th:href="@{'/annulerReservation/deleteReservation/' + ${child.parent.trip.id}}">Supprimer</a></td>
+																								th:href="@{'/annulerReservation/deleteReservation/' + ${listChild.trip.id}}">Supprimer</a></td>
 																</tr>
 												</tbody>
 								</table>
