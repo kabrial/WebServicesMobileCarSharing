@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.carSharing.model.Child;
+import com.carSharing.model.TripChild;
 import com.carSharing.model.TripParent;
 import com.carSharing.model.User;
+import com.carSharing.repository.ChildrenRepository;
 import com.carSharing.repository.TripParentRepository;
 import com.carSharing.service.AnnulerReservationService;
 import com.carSharing.service.UserService;
+
 
 /**
  * Annuler Reservation Controller
@@ -36,15 +40,25 @@ public class AnnulerReservationController {
     @Autowired
     TripParentRepository tripParentRepository;
     
+    @Autowired
+    ChildrenRepository childrenRepository;
     
     @GetMapping
     public String display(Model model) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
+        
         List<TripParent> listParent = annulerReservationService.recupererListParent(user);
         
         model.addAttribute("listParent", listParent);
+        
+        List<Child> listChild = childrenRepository.findByParent(user);
+        List<TripChild> listChildNew = null ;
+        for (int i = 0 ; i < listChild.size(); i++) {
+        listChildNew = annulerReservationService.recupererListChildren(listChild.get(i));
+        }
+        model.addAttribute("listChildNew", listChildNew);
         
         return "annulerReservation";
     }

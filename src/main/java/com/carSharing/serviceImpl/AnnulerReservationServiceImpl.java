@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carSharing.model.Child;
 import com.carSharing.model.Trip;
 import com.carSharing.model.TripChild;
 import com.carSharing.model.TripChildPK;
@@ -44,6 +45,12 @@ public class AnnulerReservationServiceImpl implements AnnulerReservationService 
     public List<TripChild> recupererListChild(Trip id) {
 
         return tripChildRepository.findByTrip(id);
+
+    }
+    
+    public List<TripChild> recupererListChildren(Child child) {
+
+        return tripChildRepository.findByChild(child);
 
     }
 

@@ -42,8 +42,30 @@
 												</thead>
 												<tbody>
 																<tr th:each="parent : ${listParent}" id="tabCount" th:inline="text">
-																				<td th:text="${parent.trip.excursion.name}"></td>										
-																				<td><a type="button" class="btn btn-danger" th:href="@{'/annulerReservation/deleteReservation/' + ${parent.trip.id}}">Supprimer</a></td>
+																				<td th:text="${parent.trip.excursion.name}"></td>
+																				<td><a type="button" class="btn btn-danger"
+																								th:href="@{'/annulerReservation/deleteReservation/' + ${parent.trip.id}}">Supprimer</a></td>
+																</tr>
+												</tbody>
+								</table>
+				</div>
+				<div class="container marketing"><br />Excursion sans la présence d'un parent<br /></div>
+				<div class="container marketing">
+								<table id="search" class="table table-hover">
+
+												<thead>
+
+																<tr>
+																				<th>Excursion Children</th>
+																				<th>Supprimer Reservation</th>
+
+																</tr>
+												</thead>
+												<tbody>
+																<tr th:each="child : ${listChildNew}" id="tabCount" th:inline="text">
+																				<td th:text="${child.parent.trip.excursion.name}"></td>
+																				<td><a type="button" class="btn btn-danger"
+																								th:href="@{'/annulerReservation/deleteReservation/' + ${child.parent.trip.id}}">Supprimer</a></td>
 																</tr>
 												</tbody>
 								</table>
