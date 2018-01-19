@@ -59,6 +59,7 @@ public class AnnulerReservationController {
         listChildNew = annulerReservationService.recupererListChildren(listChild.get(i));
         }
         model.addAttribute("listChildNew", listChildNew);
+        model.addAttribute("listChildNewSize", listChildNew.size());
         
         return "annulerReservation";
     }
