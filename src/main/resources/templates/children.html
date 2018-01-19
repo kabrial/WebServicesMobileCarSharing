@@ -16,7 +16,7 @@
 <body>
 				<header>
 								<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-												<a class="navbar-brand" th:href="@{/index}">Home</a>
+												<a class="navbar-brand" th:href="@{/}">Home</a>
 												<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
 																aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 																<span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
 																<tr th:each="child : ${children}" id="tabCount" th:inline="text">
 																				<td th:text="${child.name}"></td>
 																				<td th:text="${child.groupName}"></td>
-																				<td><a type="button" class="btn btn-success"
+																				<td><a type="button" class="btn btn-danger"
 																								th:href="@{'/children/deleteChild/' + ${child.id}}">Delete</a></td>
 																</tr>
 												</tbody>

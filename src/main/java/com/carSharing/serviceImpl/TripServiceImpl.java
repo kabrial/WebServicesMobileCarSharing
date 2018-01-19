@@ -49,4 +49,8 @@ public class TripServiceImpl implements TripService {
 
         return tripRepository.findByExcursionId(id);
     }
+    
+    public Trip findOne(Long id){
+        return tripRepository.findOne(id);
+    }
 }

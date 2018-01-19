@@ -40,7 +40,8 @@
 		
 			<tr>
 				<th>Date</th>
-				<th>Places</th>
+				<th>Numbers of Places</th>
+				<th>Places Reserved</th>
 				<th>Reserver</th>
 				<th>Supprimer</th>
 
@@ -50,12 +51,13 @@
 			<tr th:each="trip : ${listTrip}" id="tabCount" th:inline="text">
 				<td th:text="${trip.dateDepart}"></td>
 				<td th:text="${trip.numberPlaces}"></td>
+				<td th:text="${trip.placesReserved}"></td>
 				<td><a type="button" class="btn btn-success" th:href="@{'/reserve/' + ${trip.id}}">Réserver</a></td>
 				<td><a type="button" class="btn btn-success" th:href="@{'/delete/' + ${trip.id}}">Supprimer</a></td>
 			</tr>
 		</tbody>
 	</table>
-		 <a type="button" class="btn btn-success" th:href="@{'/trips/createTrips/' + ${id}}">Create Trip</a>       
+		 <p align="center"><a  type="button" class="btn btn-success" th:href="@{'/trips/createTrips/' + ${id}}">Create Trip</a></p>       
 	</div>
 		
 

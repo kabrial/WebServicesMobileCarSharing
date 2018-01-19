@@ -23,10 +23,12 @@ Il existe 3 types de roles pour les utilisateurs :
 * ADMIN : Il a tous les droits
 * USER : Cette utilisateur est restreint.
 
+Les utilisateurs déjà présent dans le fichier "carsharing.sql" sont :
 
 ```
 L'utilisateur avec le username:  useradmin et password: useradmin correspond a un compte avec le role d'admin.
-L'utilisateur avec le username:  useruser et password: useruser correspond a un compte avec le role de user.
+L'utilisateur avec le username:  useramine et password: useramine correspond a un compte avec le role de user.
+L'utilisateur avec le username:  useralexis et password: useralexis correspond a un compte avec le role de user.
 ```
 
 

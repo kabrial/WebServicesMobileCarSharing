@@ -11,4 +11,6 @@ public interface TripService {
     Trip save(Long id, TripForm trip, User user);
     
     List<Trip> findAllById(Long id);
+    
+    Trip findOne(Long id);
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 08 Janvier 2018 à 23:21
+-- Généré le :  Ven 19 Janvier 2018 à 01:32
 -- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.16.04.1
 
@@ -33,6 +33,17 @@ CREATE TABLE `child` (
   `parent_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `child`
+--
+
+INSERT INTO `child` (`id`, `name`, `group_id`, `parent_id`) VALUES
+(1, 'Enfant 1', 1, 1),
+(2, 'Enfant 2', 2, 1),
+(3, 'Enfant 3', 3, 1),
+(4, 'Enfant 4', 4, 1),
+(5, 'Enfant 5', 5, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +55,13 @@ CREATE TABLE `excursion` (
   `days` bigint(20) NOT NULL,
   `name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `excursion`
+--
+
+INSERT INTO `excursion` (`id`, `days`, `name`) VALUES
+(1, 3, 'Voyage a Barcelone');
 
 -- --------------------------------------------------------
 
@@ -57,6 +75,39 @@ CREATE TABLE `excursiongroup` (
   `excursion_id` bigint(20) DEFAULT NULL,
   `group_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `excursiongroup`
+--
+
+INSERT INTO `excursiongroup` (`id_excursion`, `id_group`, `excursion_id`, `group_id`) VALUES
+(1, 1, 1, 1),
+(1, 2, 1, 2),
+(1, 3, 1, 3),
+(1, 4, 1, 4),
+(1, 5, 1, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`) VALUES
+(1, 'beavers'),
+(2, 'cubs'),
+(3, 'scouts'),
+(4, 'explorer scouts'),
+(5, 'scout network');
 
 -- --------------------------------------------------------
 
@@ -87,9 +138,17 @@ CREATE TABLE `trip` (
   `id` bigint(20) NOT NULL,
   `date_depart` varchar(255) DEFAULT NULL,
   `number_places` bigint(20) NOT NULL,
+  `places_reserved` bigint(20) NOT NULL,
   `excursion_id` bigint(20) DEFAULT NULL,
   `parent_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `trip`
+--
+
+INSERT INTO `trip` (`id`, `date_depart`, `number_places`, `places_reserved`, `excursion_id`, `parent_id`) VALUES
+(1, '2018-01-19', 5, 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -103,6 +162,14 @@ CREATE TABLE `tripchild` (
   `child_id` bigint(20) DEFAULT NULL,
   `trip_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `tripchild`
+--
+
+INSERT INTO `tripchild` (`id_child`, `id_trip`, `child_id`, `trip_id`) VALUES
+(1, 1, 1, 1),
+(2, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -137,8 +204,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `password`, `username`, `userrole`) VALUES
-(1, 'Admin', 'Admin', '$2a$10$OKMEABGLg8vJyGlNMQKwm.ftPUh8nxNQ5M2IbO9V4qootui5dvRA2', 'useradmin', 'ADMIN'),
-(2, 'User', 'User', '$2a$10$sAa/v4cyNXiLXK1ub0NhpOnJHjXlsRiDVe0DeXHGa9NDQs9AEcmRq', 'useruser', 'USER');
+(1, 'Kevin', 'ABRIAL', '$2a$10$34pXuGy/IARbUjDFA2lXI.phbiFY0TJ9aiDfLzEsrcz.prPH0FW5.', 'useradmin', 'ADMIN'),
+(2, 'Amine', 'IDIR', '$2a$10$y/X/8kD/FI7URVMbD39G7e3xMXkj8sCXeBOuOvH6sCg2eKuikdEsW', 'useramine', 'USER'),
+(3, 'Alexis', 'BARTHELEMY', '$2a$10$0j5FTl.8gAHkT5paVuh.xuk9QlFNJ5t2G74O29.uvC2NhWCcLUl5W', 'useralexis', 'USER');
 
 -- --------------------------------------------------------
 
@@ -157,7 +225,8 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (1, 0),
-(2, 1);
+(2, 1),
+(3, 1);
 
 --
 -- Index pour les tables exportées
@@ -168,6 +237,7 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 --
 ALTER TABLE `child`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `FK9dmg29jc4ny5pi1clrja3l3cg` (`group_id`),
   ADD KEY `FK2hhx1fdmwt995qgrr4p33pgsq` (`parent_id`);
 
 --
@@ -181,7 +251,14 @@ ALTER TABLE `excursion`
 --
 ALTER TABLE `excursiongroup`
   ADD PRIMARY KEY (`id_excursion`,`id_group`),
-  ADD KEY `FKo7u8iic2qs89was44h86dvx7o` (`excursion_id`);
+  ADD KEY `FKo7u8iic2qs89was44h86dvx7o` (`excursion_id`),
+  ADD KEY `FKexg3sdeppxnjacsqgrbek6bxn` (`group_id`);
+
+--
+-- Index pour la table `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `role`
@@ -234,12 +311,17 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT pour la table `child`
 --
 ALTER TABLE `child`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `excursion`
 --
 ALTER TABLE `excursion`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
@@ -249,12 +331,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
@@ -263,12 +345,14 @@ ALTER TABLE `user`
 -- Contraintes pour la table `child`
 --
 ALTER TABLE `child`
-  ADD CONSTRAINT `FK2hhx1fdmwt995qgrr4p33pgsq` FOREIGN KEY (`parent_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `FK2hhx1fdmwt995qgrr4p33pgsq` FOREIGN KEY (`parent_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK9dmg29jc4ny5pi1clrja3l3cg` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`);
 
 --
 -- Contraintes pour la table `excursiongroup`
 --
 ALTER TABLE `excursiongroup`
+  ADD CONSTRAINT `FKexg3sdeppxnjacsqgrbek6bxn` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`),
   ADD CONSTRAINT `FKo7u8iic2qs89was44h86dvx7o` FOREIGN KEY (`excursion_id`) REFERENCES `excursion` (`id`);
 
 --

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -17,10 +20,12 @@ import com.carSharing.model.Excursion;
 import com.carSharing.model.ExcursionGroup;
 import com.carSharing.model.ExcursionGroupPK;
 import com.carSharing.model.Group;
+import com.carSharing.model.User;
 import com.carSharing.repository.ExcursionGroupRepository;
 import com.carSharing.repository.GroupRepository;
 import com.carSharing.service.ExcursionService;
 import com.carSharing.service.GroupService;
+import com.carSharing.service.UserService;
 
 import lombok.AllArgsConstructor;
 
@@ -44,10 +49,18 @@ public class ExcursionController {
     GroupRepository groupRepository;
     
     @Autowired
+    UserService userService;
+    
+    @Autowired
     ExcursionGroupRepository excursionGroupRepository;
     
     @GetMapping
     public String display(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        User user = userService.findByUsername(username);
+        model.addAttribute("userName",username);
+        model.addAttribute("userRole",user.getUserrole());
         List<Excursion> listExcursion = excursionService.findAll();
         List<ExcursionForm> list=new ArrayList<>();
         for(Excursion ex: listExcursion){
@@ -67,6 +80,14 @@ public class ExcursionController {
     
     @RequestMapping(value="/createExcursions", method = RequestMethod.GET)
     public String displayCreate(@ModelAttribute ExcursionForm excursion, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        User user = userService.findByUsername(username);
+        if (user.getUserrole().equals("USER")){
+            return "redirect:/excursions";
+        }
+        model.addAttribute("userName",username);
+        model.addAttribute("userRole",user.getUserrole());
         model.addAttribute("theExcursion", excursion);
         model.addAttribute("groups", groupService.findAll());
         return "createExcursion";
@@ -80,7 +101,6 @@ public class ExcursionController {
         for(String i : excursion.getGroups()){
             ExcursionGroup exgrp = new ExcursionGroup();
             Group group= groupRepository.findOne(Long.parseLong(i));
-            System.err.println("ICI"+Long.parseLong(i));
             ExcursionGroupPK pK=new ExcursionGroupPK();
             pK.setIdExcursion(ex.getId());
             pK.setIdGroup(group.getId());
