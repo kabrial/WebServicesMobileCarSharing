@@ -19,8 +19,14 @@ import com.carSharing.model.Excursion;
 import com.carSharing.model.ExcursionGroup;
 import com.carSharing.model.Group;
 import com.carSharing.model.Trip;
+import com.carSharing.model.TripChild;
+import com.carSharing.model.TripParent;
 import com.carSharing.model.User;
+import com.carSharing.repository.ChildrenRepository;
 import com.carSharing.repository.ExcursionRepository;
+import com.carSharing.repository.TripChildRepository;
+import com.carSharing.repository.TripParentRepository;
+import com.carSharing.repository.TripRepository;
 import com.carSharing.service.ChildrenService;
 import com.carSharing.service.TripChildService;
 import com.carSharing.service.TripParentService;
@@ -56,6 +62,18 @@ public class ReservedController {
     
     @Autowired
     TripChildService tripChildService;
+    
+    @Autowired
+    TripParentRepository tripParentRepository;
+    
+    @Autowired
+    TripRepository tripRepository;
+    
+    @Autowired
+    TripChildRepository tripChildRepository;
+    
+    @Autowired
+    ChildrenRepository childrenRepository;
     
     @RequestMapping(value = "/reserve/{idExcursion}/{id}", method = RequestMethod.GET)
     public String display(@PathVariable Long idExcursion, @PathVariable Long id, @ModelAttribute ReservedForm reserved, Model model) {
@@ -93,7 +111,49 @@ public class ReservedController {
 
             }
         }
+       
+        
+        
+        
+        
+        /* verifier si des personnes sont deja présentes dans la table TripChild et TripParent */
+        
+        /* Parent */ 
+        
+        Trip tripTestVerification = tripRepository.findOne(id);
+        List<TripParent> tripParent = tripParentRepository.findByParentAndTrip(user, tripTestVerification);
+        if (tripParent.isEmpty()) {
+            model.addAttribute("parent", 0);
+        } else {
+            model.addAttribute("parent", 1);
+        }
+        
+        /* Child */ 
+        
+        Trip tripTestVerificationChild = tripRepository.findOne(id);
+        
+        Long idTripForSearch = tripTestVerificationChild.getExcursion().getId();
+        
+        List<Trip> listAllTrip = tripRepository.findByExcursionId(idTripForSearch);
+        List<TripChild> listTripChild = new ArrayList<>();
+        for (int i = 0; i < listAllTrip.size(); i++){
+            listTripChild = tripChildRepository.findByTrip(listAllTrip.get(i));
+        }
+        
+        List<Child> childUser = childrenRepository.findByParent(user);
+        
+        System.err.println(listTripChild.size()+ "sd" + childUser.size());
+        for (int j = 0; j < childUser.size(); j++) {
+            if (listTripChild.get(j).getChild().getId() == childUser.get(j).getId()) {
+                childs.remove(listTripChild.get(j).getChild().getId());
+            }
+        }
+        
+        
+        /* *********************************************************************************** */
+        
         model.addAttribute("childs", childs);
+        
         return "reserve";
     }
     
@@ -103,10 +163,6 @@ public class ReservedController {
         model.addAttribute("theReserve", reserved);
         model.addAttribute("idExcursion", idExcursion);
         model.addAttribute("id", id);
-        
-        
-        System.err.println("presence"+reserved.getPresenceParent());
-        System.err.println("childs"+reserved.getChilds());
         
         
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

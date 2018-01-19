@@ -42,9 +42,11 @@
 												</label> <br /> <label> Nombres de places disponibles : <span class="label label-default"
 																th:text="${numberPlacesDispo}"></span>
 																<input id="numberPlacesDispo" type="hidden" th:value="${numberPlacesDispo}" onchange="verifierZero();"/>
-												</label> <br /> <label>Presence parent : <select id="presenceParent"  th:field="*{presenceParent}" required="required" onchange="changeSelect();">
+												</label> <br /> <input id="parentTable" type="hidden" th:value="${parent}"/>
+																 <label>Presence parent : <select id="presenceParent"  th:field="*{presenceParent}" required="required" onchange="changeSelect();">
 																<option value="" selected="selected"></option>
 																<option value="1">Oui</option>
+																<option value="0">Deja present</option> 
 																<option value="0">Non</option>
 												</select> </label> <br />
 												
@@ -62,6 +64,12 @@
 </body>
 
 <script type="text/javascript">
+
+var parentTable = $("#parentTable").val();
+if (parentTable == 1){
+    $("#valueOfOne").attr("selected", "selected");  
+    $("#presenceParent").val(0);
+}
 
 function verifierZero() {
     var numberPlacesDispo = $("#numberPlacesDispo").val();

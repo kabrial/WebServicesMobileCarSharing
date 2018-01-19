@@ -14,4 +14,6 @@ public interface TripParentRepository extends JpaRepository<TripParent, TripPare
 	List<TripParent> findByTrip(Trip theTrip);
 
 	List<TripParent> findByParent(User user);
+	
+	List<TripParent> findByParentAndTrip(User user, Trip trip);
 }
