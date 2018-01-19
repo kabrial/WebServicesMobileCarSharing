@@ -87,7 +87,7 @@ public class DeleteTripController {
 				tripChildRepository.delete(tripChild);
 			}
 		}
-		System.err.println("1");
+
 		if (user.equals(theTrip.getParent())) {// si c'est la personne qui a cr�e le trip
 			List<TripChild> tripChilds = tripChildRepository.findByTrip(theTrip);
 			List<TripParent> tripParents = tripParentRepository.findByTrip(theTrip);
@@ -95,7 +95,7 @@ public class DeleteTripController {
 			List<TripChild> tripChildsTemp = tripChildRepository.findByTrip(theTrip);
 
 			List<FamilyForm> families = new ArrayList<>();
-			System.err.println("1");
+
 			// regrouper en famille (parent enfant)
 			for (TripParent tripParent : tripParents) {
 				FamilyForm family = new FamilyForm();
@@ -117,7 +117,7 @@ public class DeleteTripController {
 					families.add(family);
 				}
 			}
-			System.err.println("2");
+
 			// regrouper en famille (null enfants) -- cas children seuls
 			while (tripChildsTemp.size() > 0) {
 				FamilyForm family = new FamilyForm();
@@ -142,7 +142,6 @@ public class DeleteTripController {
 				}
 			}
 
-			System.err.println("3");
 			// chercher les trip qui ont de la place pour une famille (famille par famille)
 			// cr�er le lien et save
 			int indexT = 0;
@@ -248,7 +247,6 @@ public class DeleteTripController {
 				}
 			}
 
-			System.err.println("5");
 			// supprimer le trip et les tables de liens
 			for (TripParent tripParent : tripParents) {
 				tripParentRepository.delete(tripParent);
