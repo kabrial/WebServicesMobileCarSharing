@@ -41,14 +41,14 @@
 																th:text="${placesReserved}"></span>
 												</label> <br /> <label> Nombres de places disponibles : <span class="label label-default"
 																th:text="${numberPlacesDispo}"></span>
-																<input id="numberPlacesDispo" type="hidden" th:value="${numberPlacesDispo}"/>
+																<input id="numberPlacesDispo" type="hidden" th:value="${numberPlacesDispo}" onchange="verifierZero();"/>
 												</label> <br /> <label>Presence parent : <select id="presenceParent"  th:field="*{presenceParent}" required="required" onchange="changeSelect();">
 																<option value="" selected="selected"></option>
 																<option value="1">Oui</option>
 																<option value="0">Non</option>
 												</select> </label> <br />
 												
-												Choissisez vos enfants qui participent à ce trajet:<SELECT multiple required onchange="changeSelect();"
+												Choissisez vos enfants qui participent à ce trajet:<SELECT multiple onchange="changeSelect();"
 																id="childs"  th:field="*{childs}" name="gr">
 																<OPTION th:each="child : ${childs}" th:value="${child.id}" th:inline="text">[[${child.name}]]</OPTION>
 												</SELECT><br /> <br />
@@ -62,6 +62,16 @@
 </body>
 
 <script type="text/javascript">
+
+function verifierZero() {
+    var numberPlacesDispo = $("#numberPlacesDispo").val();
+    if (numberPlacesDispo == 0) {
+        $("#boutton").attr("disabled", true);
+    } else {
+        $("#boutton").attr("disabled", false);
+    }
+}
+
 
 function changeSelect() {
     var number = $("#numberPlacesDispo").val();

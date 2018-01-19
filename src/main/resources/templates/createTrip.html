@@ -11,6 +11,8 @@
 
 <!-- Custom styles for this template -->
 <link href="https://getbootstrap.com/docs/4.0/examples/carousel/carousel.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -34,15 +36,15 @@
 												method="post" class="form-horizontal" role="form">
 												<h3 class="form-signin-heading" th:text="CreateTrip"></h3>
 
-												<input type="number" th:field="*{numberPlaces}" placeholder="Number Places in the car..."
-																class="form-control" required="required" step="1" /> <br /> <br /> <input type="date"
+												<input id="numberPlacesDispo" type="number" th:field="*{numberPlaces}" placeholder="Number Places in the car..."
+																class="form-control" required="required" step="1" onchange="verifier();"/> <br /> <br /> <input type="date"
 																th:field="*{dateDepart}" placeholder="Date de Depart..." class="form-control" required="required"
 																maxlength="32" /> <br /> <br /> Choissisez vos enfants qui participent à ce trajet:<SELECT multiple
-																th:field="*{childs}" name="gr">
+																th:field="*{childs}" name="gr" id="childs" onchange="verifier();">
 																<OPTION th:each="child : ${childs}" th:value="${child.id}" th:inline="text">[[${child.name}]]</OPTION>
 												</SELECT><br /> <br />
 
-												<button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit">Create Trip</button>
+												<button id="boutton" class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit">Create Trip</button>
 												<span style="font-size: 20; color: #9FE855;" th:utext="${successMessage}"></span>
 								</form>
 
@@ -50,4 +52,20 @@
 
 
 </body>
+
+<script type="text/javascript">
+
+function verifier() {
+    var number = $("#numberPlacesDispo").val();
+    var child = $("#childs").val();
+    var childLength = child.length;
+    if (childLength + 1 > number) {
+        $("#boutton").attr("disabled", true);
+    } else {
+        $("#boutton").attr("disabled", false);
+    }
+}
+
+
+</script>
 </html>

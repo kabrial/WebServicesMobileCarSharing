@@ -63,6 +63,9 @@ public class ReservedController {
         Long numberPlacesDispo = numberPlaces - placesReserved;
         model.addAttribute("numberPlacesDispo", numberPlacesDispo);
         
+        if (numberPlacesDispo == 0) {
+            return "redirect:/excursions";
+        }
         
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
