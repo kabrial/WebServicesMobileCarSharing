@@ -100,6 +100,6 @@ public class ReservedController {
         System.err.println("presence"+reserved.getPresenceParent());
         System.err.println("childs"+reserved.getChilds());
         
-        return "redirect:/excursions";
+        return "redirect:/trips/" + idExcursion;
     }
 }

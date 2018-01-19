@@ -33,7 +33,7 @@
 								</nav>
 				</header>
 				<div class="container marketing">
-								<form autocomplete="off" action="#" th:action="@{'/reserve/' + ${id}}" th:object="${theReserve}" method="post"
+								<form autocomplete="off" action="#" th:action="@{'/reserve/' + ${idExcursion} + '/' + ${id}}" th:object="${theReserve}" method="post"
 												class="form-horizontal" role="form">
 												<h3 class="form-signin-heading" th:text="Reserve"></h3>
 												<br /> <label> Nombres de places : <span class="label label-default" th:text="${numberPlaces}"></span>
@@ -75,6 +75,10 @@ function verifierZero() {
 
 function changeSelect() {
     var number = $("#numberPlacesDispo").val();
+    if (number == -1) {
+        alert(number);
+    }
+    alert(number);
     var parent = $("#presenceParent").val();
     var child = $("#childs").val();
     var childLength = child.length;
