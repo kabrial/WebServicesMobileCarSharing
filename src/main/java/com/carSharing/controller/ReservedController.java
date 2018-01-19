@@ -93,6 +93,7 @@ public class ReservedController {
     public String displayPost(@PathVariable Long idExcursion, @PathVariable Long id, @ModelAttribute ReservedForm reserved, Model model) {
         
         model.addAttribute("theReserve", reserved);
+        model.addAttribute("idExcursion", idExcursion);
         model.addAttribute("id", id);
         
         
