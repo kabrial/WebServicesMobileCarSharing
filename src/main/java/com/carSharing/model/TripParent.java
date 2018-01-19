@@ -17,38 +17,47 @@ import javax.persistence.Table;
 @Table(name = "tripparent")
 public class TripParent implements Serializable {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -5743907611032910678L;
-    @EmbeddedId
-    private TripParentPK id;
-    @ManyToOne
-    private Trip trip;
-    public TripParent() {
-    }
+	public TripParentPK getId() {
+		return id;
+	}
 
-    @ManyToOne
-    private User parent;
+	public void setId(TripParentPK id) {
+		this.id = id;
+	}
 
-    public Trip getTrip() {
-        return trip;
-    }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5743907611032910678L;
+	@EmbeddedId
+	private TripParentPK id;
+	@ManyToOne
+	private Trip trip;
 
-    public void setTrip(Trip trip) {
-        this.trip = trip;
-    }
+	public TripParent() {
+	}
 
-    public User getParent() {
-        return parent;
-    }
+	@ManyToOne
+	private User parent;
 
-    public void setParent(User parent) {
-        this.parent = parent;
-    }
+	public Trip getTrip() {
+		return trip;
+	}
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+
+	public User getParent() {
+		return parent;
+	}
+
+	public void setParent(User parent) {
+		this.parent = parent;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }
