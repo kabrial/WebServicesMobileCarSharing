@@ -22,6 +22,8 @@ import com.carSharing.model.Trip;
 import com.carSharing.model.User;
 import com.carSharing.repository.ExcursionRepository;
 import com.carSharing.service.ChildrenService;
+import com.carSharing.service.TripChildService;
+import com.carSharing.service.TripParentService;
 import com.carSharing.service.TripService;
 import com.carSharing.service.UserService;
 
@@ -49,6 +51,12 @@ public class ReservedController {
     @Autowired
     ExcursionRepository excursionRepository;
     
+    @Autowired
+    TripParentService tripParentService;
+    
+    @Autowired
+    TripChildService tripChildService;
+    
     @RequestMapping(value = "/reserve/{idExcursion}/{id}", method = RequestMethod.GET)
     public String display(@PathVariable Long idExcursion, @PathVariable Long id, @ModelAttribute ReservedForm reserved, Model model) {
 
@@ -72,7 +80,7 @@ public class ReservedController {
         User user = userService.findByUsername(auth.getName());
         List<Child> children = childrenService.findByParent(user);
         List<Child> childs = new ArrayList<>();
-        Excursion ex = excursionRepository.findOne(id);
+        Excursion ex = excursionRepository.findOne(idExcursion);
         List<ExcursionGroup> exGrp = ex.getExcursionGroups();
         List<Group> groups = new ArrayList<>();
         for (ExcursionGroup exg : exGrp) {
@@ -99,6 +107,13 @@ public class ReservedController {
         
         System.err.println("presence"+reserved.getPresenceParent());
         System.err.println("childs"+reserved.getChilds());
+        
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        
+        tripParentService.save(idExcursion, id, user, reserved);
+        tripChildService.save(idExcursion, id, reserved);
         
         return "redirect:/trips/" + idExcursion;
     }

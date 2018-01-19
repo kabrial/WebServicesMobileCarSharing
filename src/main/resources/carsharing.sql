@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 19 Janvier 2018 à 01:32
+-- Généré le :  Ven 19 Janvier 2018 à 21:11
 -- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.16.04.1
 
@@ -183,6 +183,13 @@ CREATE TABLE `tripparent` (
   `parent_id` bigint(20) DEFAULT NULL,
   `trip_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `tripparent`
+--
+
+INSERT INTO `tripparent` (`id_parent`, `id_trip`, `parent_id`, `trip_id`) VALUES
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
