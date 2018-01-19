@@ -49,10 +49,11 @@ public class ReservedController {
     @Autowired
     ExcursionRepository excursionRepository;
     
-    @RequestMapping(value = "/reserve/{id}", method = RequestMethod.GET)
-    public String display(@PathVariable Long id, @ModelAttribute ReservedForm reserved, Model model) {
+    @RequestMapping(value = "/reserve/{idExcursion}/{id}", method = RequestMethod.GET)
+    public String display(@PathVariable Long idExcursion, @PathVariable Long id, @ModelAttribute ReservedForm reserved, Model model) {
 
         model.addAttribute("theReserve", reserved);
+        model.addAttribute("idExcursion", idExcursion);
         model.addAttribute("id", id);
         
         Trip trip = tripService.findOne(id);
@@ -64,7 +65,7 @@ public class ReservedController {
         model.addAttribute("numberPlacesDispo", numberPlacesDispo);
         
         if (numberPlacesDispo == 0) {
-            return "redirect:/excursions";
+            return "redirect:/trips/" + idExcursion;
         }
         
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -88,8 +89,8 @@ public class ReservedController {
         return "reserve";
     }
     
-    @RequestMapping(value = "/reserve/{id}", method = RequestMethod.POST)
-    public String displayPost(@PathVariable Long id, @ModelAttribute ReservedForm reserved, Model model) {
+    @RequestMapping(value = "/reserve/{idExcursion}/{id}", method = RequestMethod.POST)
+    public String displayPost(@PathVariable Long idExcursion, @PathVariable Long id, @ModelAttribute ReservedForm reserved, Model model) {
         
         model.addAttribute("theReserve", reserved);
         model.addAttribute("id", id);

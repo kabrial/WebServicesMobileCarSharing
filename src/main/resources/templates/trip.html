@@ -56,7 +56,7 @@
 																												<img class="img-circle" src="/images/stop.jpg" style="height: 25%; width: 15%;">
 																								</td>
 																								<td th:case="*">
-																												<a type="button" class="btn btn-success" th:href="@{'/reserve/' + ${trip.id}}">Réserver</a>
+																												<a type="button" class="btn btn-success" th:href="@{'/reserve/' + ${id} + '/' + ${trip.id}}">Réserver</a>
 																								</td>					
 																				</th:block>
 																				
