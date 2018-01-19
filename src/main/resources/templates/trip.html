@@ -42,6 +42,7 @@
 				<th>Date</th>
 				<th>Numbers of Places</th>
 				<th>Places Reserved</th>
+				<th>Places Restantes</th>
 				<th>Reserver</th>
 				<th>Supprimer</th>
 
@@ -52,6 +53,7 @@
 				<td th:text="${trip.dateDepart}"></td>
 				<td th:text="${trip.numberPlaces}"></td>
 				<td th:text="${trip.placesReserved}"></td>
+				<td th:text="${trip.numberPlaces}-${trip.placesReserved}"></td>
 				<td><a type="button" class="btn btn-success" th:href="@{'/reserve/' + ${trip.id}}">Réserver</a></td>
 				<td><a type="button" class="btn btn-success" th:href="@{'/delete/' + ${trip.id}}">Supprimer</a></td>
 			</tr>

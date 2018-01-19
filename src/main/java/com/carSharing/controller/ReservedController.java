@@ -92,6 +92,9 @@ public class ReservedController {
         model.addAttribute("id", id);
         
         
-        return "reserve";
+        System.err.println("presence"+reserved.getPresenceParent());
+        System.err.println("childs"+reserved.getChilds());
+        
+        return "redirect:/excursions";
     }
 }

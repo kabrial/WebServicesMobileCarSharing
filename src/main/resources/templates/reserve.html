@@ -38,7 +38,7 @@
 																th:text="${placesReserved}"></span>
 												</label> <br /> <label> Nombres de places disponibles : <span class="label label-default"
 																th:text="${numberPlacesDispo}"></span>
-												</label> <br /> <label>Presence parent : <select required="required">
+												</label> <br /> <label>Presence parent : <select th:field="*{presenceParent}" required="required">
 																<option value="" selected="selected"></option>
 																<option value="1">Oui</option>
 																<option value="0">Non</option>
