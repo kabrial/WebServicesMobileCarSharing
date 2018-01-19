@@ -19,7 +19,7 @@ Les mots de passes sont cryptés pour chaque utilisateur, avec BCryptPasswordEnc
 
 ### Users and Roles in the Database
 
-Il existe 3 types de roles pour les utilisateurs : 
+Il existe 2 types de roles pour les utilisateurs : 
 * ADMIN : Il a tous les droits
 * USER : Cette utilisateur est restreint.
 
