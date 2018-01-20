@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 19 Janvier 2018 à 21:11
+-- Généré le :  Sam 20 Janvier 2018 à 18:49
 -- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.16.04.1
 
@@ -38,11 +38,21 @@ CREATE TABLE `child` (
 --
 
 INSERT INTO `child` (`id`, `name`, `group_id`, `parent_id`) VALUES
-(1, 'Enfant 1', 1, 1),
-(2, 'Enfant 2', 2, 1),
-(3, 'Enfant 3', 3, 1),
-(4, 'Enfant 4', 4, 1),
-(5, 'Enfant 5', 5, 1);
+(1, 'Kevin 1', 1, 1),
+(2, 'Kevin 2', 2, 1),
+(3, 'Kevin 3', 3, 1),
+(4, 'Kevin 4', 4, 1),
+(5, 'Kevin 5', 5, 1),
+(6, 'Amine 1', 1, 2),
+(7, 'Amine 2', 2, 2),
+(8, 'Amine 3', 3, 2),
+(9, 'Amine 4', 4, 2),
+(10, 'Amine 5', 5, 2),
+(11, 'Alexis 1', 1, 3),
+(12, 'Alexis 2', 2, 3),
+(13, 'Alexis 3', 3, 3),
+(14, 'Alexis 4', 4, 3),
+(15, 'Alexis 5', 5, 3);
 
 -- --------------------------------------------------------
 
@@ -318,7 +328,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT pour la table `child`
 --
 ALTER TABLE `child`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT pour la table `excursion`
 --
