@@ -45,6 +45,15 @@ Il existe les fonctionnalités suivantes pour ce projet :
 * L'acces a la description du site ce fait via "Description dans la barre du menu".
 * L'acces a une eventuel aide sur le site ce fait via "Help dans la barre du menu".
 
+* 
+*
+* Chaque utilisateur peut consulter les excursions à l'adresse : http://localhost:8080/excursions 
+* L'administrateur peut creer des excursions et seulement lui : http://localhost:8080/excursions/createExcursions
+* Chaque utilisateur peut consulter des trips : par exemple, http://localhost:8080/trips/1, :warning: Le 1 correspond a l'id du trip, il change en fonction du trip selectionné.
+* Chaque utilisateur peut creer des trips : par exemple, http://localhost:8080/trips/createTrips/1 :warning: Le 1 correspond a l'id, il change en fonction du trip selectionné.
+* Chaque utilisateur peut reserver ou supprimé un trip, par exemple voir les boutons prévus à cette effet : http://localhost:8080/trips/1
+* Chaque utilisateur peut ajouter des enfants à son compte : http://localhost:8080/yourProfil , puis le bouton Children, remplir le formulaire et le bouton Create Child crée l'enfant associé au compte de l'utilisateur connecté. 
+* Chaque utilisateur peut supprimer un des ces enfants : http://localhost:8080/yourProfil , puis le bouton Children, puis le bouton supprimer.
 ### En tant que user non connecte
 
 Il existe les fonctionnalites suivantes pour ce projet : 
@@ -62,6 +71,10 @@ Dans le projet nous avons mis en place des validations de formulaires, notamment
 * Pour le "Sign Out dans la barre du menu", si le username n'est pas compris entre 6 et 32 caracteres, on affiche un message d'erreur en rouge sur la page.
 * Pour le "Sign Out dans la barre du menu", on verifie si les deux passwords correspondent aux mêmes, sinon on affiche un message d'erreur en rouge sur la page.
 * Pour modifier le password, "Your profil dans la barre du menu and on Update button", on verifie si les deux mots de passes correspondent l'un à l'autre, sinon on affiche un message d'erreur en rouge sur la page.
+
+## Responsive Mobile
+
+Nous avons utilisés BootStrap, pour que notre application web soit responsive, pour respecter l'énoncé du sujet du projet.
 
 ## Les pages html
 
