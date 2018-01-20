@@ -256,7 +256,7 @@ public class DeleteTripController {
 			}
 			tripRepository.delete(theTrip);
 		} else {
-			return ("vous n'avez pas le droit de supprimer ce Trip");
+			return ("redirect:/trips/" + theTrip.getExcursion().getId());
 		}
 		return ("redirect:/trips/" + theTrip.getExcursion().getId());
 	}
