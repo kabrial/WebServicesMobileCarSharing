@@ -14,63 +14,65 @@
 </head>
 
 <body>
-				<header>
-								<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-												<a class="navbar-brand" th:href="@{/}">Home</a>
-												<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-																aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-																<span class="navbar-toggler-icon"></span>
-												</button>
-												<div class="collapse navbar-collapse" id="navbarCollapse">
-																<ul class="navbar-nav mr-auto">
-																				<li class="nav-item"><a class="nav-link" th:href="@{/index#ToMiddle}">Description</a></li>
-																				<li class="nav-item"><a class="nav-link" th:href="@{/index#ToBottom}">Help</a></li>
-																</ul>
-												</div>
-								</nav>
-				</header>
-				<div class="container marketing">
-								<table id="search" class="table table-hover">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" th:href="@{/}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                                            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/index#ToMiddle}">Description</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/index#ToBottom}">Help</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container marketing">
+        <h1 style="text-align: center; padding-top: 50px; padding-bottom: 20px;">Cancel order</h1>
+        <div class="table-responsive">
+            <table id="search" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Excursion Parents With Children</th>
+                        <th>Cancel Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="parent : ${listParent}" id="tabCount" th:inline="text">
+                        <td th:text="${parent.trip.excursion.name}"></td>
+                        <td><a type="button" class="btn btn-danger"
+                            th:href="@{'/annulerReservation/deleteReservation/' + ${parent.trip.id}}">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-												<thead>
+    </div>
+    
+    <div class="container marketing" style="padding-top: 50px;">
+        <div class="table-responsive">
+            <table id="search" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Excursion With your Children only  </th>
+                        <th>Cancel Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="listChild : ${listChildNew}" id="tabCount" th:inline="text">
+                        <td th:text="${listChild.child.name}"></td>
+                        <td><a type="button" class="btn btn-danger"
+                                                        th:href="@{'/annulerReservation/deleteReservation/' + ${listChild.trip.id}}">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-																<tr>
-																				<th>Excursion Parent With Children</th>
-																				<th>Supprimer Reservation</th>
-
-																</tr>
-												</thead>
-												<tbody>
-																<tr th:each="parent : ${listParent}" id="tabCount" th:inline="text">
-																				<td th:text="${parent.trip.excursion.name}"></td>
-																				<td><a type="button" class="btn btn-danger"
-																								th:href="@{'/annulerReservation/deleteReservation/' + ${parent.trip.id}}">Supprimer</a></td>
-																</tr>
-												</tbody>
-								</table>
-				</div>
-				<div class="container marketing"><br />Excursion sans la présence d'un parent<br /></div>
-				<div class="container marketing">
-								<table id="search" class="table table-hover">
-
-												<thead>
-
-																<tr>
-																				<th>Excursion Children</th>
-																				<th>Supprimer Reservation</th>
-
-																</tr>
-												</thead>
-												<tbody>
-																<tr th:each="listChild : ${listChildNew}" id="tabCount" th:inline="text">
-																				<td th:text="${listChild.child.name}"></td>
-																				<td><a type="button" class="btn btn-danger"
-																								th:href="@{'/annulerReservation/deleteReservation/' + ${listChild.trip.id}}">Supprimer</a></td>
-																</tr>
-												</tbody>
-								</table>
-				</div>
+    </div>
 
 
 </body>
 </html>
+
