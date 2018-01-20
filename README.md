@@ -44,9 +44,6 @@ Il existe les fonctionnalités suivantes pour ce projet :
 * Chaque utilisateur peut se deconnecter a tout moment. "Logout dans la barre du menu".
 * L'acces a la description du site ce fait via "Description dans la barre du menu".
 * L'acces a une eventuel aide sur le site ce fait via "Help dans la barre du menu".
-
-* 
-*
 * Chaque utilisateur peut consulter les excursions à l'adresse : http://localhost:8080/excursions 
 * L'administrateur peut creer des excursions et seulement lui : http://localhost:8080/excursions/createExcursions
 * Chaque utilisateur peut consulter des trips : par exemple, http://localhost:8080/trips/1, :warning: Le 1 correspond a l'id du trip, il change en fonction du trip selectionné.
