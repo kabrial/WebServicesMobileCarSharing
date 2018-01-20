@@ -142,7 +142,6 @@ public class ReservedController {
         
         List<Child> childUser = childrenRepository.findByParent(user);
         
-        System.err.println(listTripChild.size()+ "sd" + childUser.size());
         for (int j = 0; j < childUser.size(); j++) {
             if (listTripChild.get(j).getChild().getId() == childUser.get(j).getId()) {
                 childs.remove(listTripChild.get(j).getChild().getId());
@@ -153,7 +152,7 @@ public class ReservedController {
         /* *********************************************************************************** */
         
         model.addAttribute("childs", childs);
-        
+  
         return "reserve";
     }
     
