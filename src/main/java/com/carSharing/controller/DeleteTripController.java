@@ -81,14 +81,16 @@ public class DeleteTripController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByUsername(auth.getName());
 		List<Child> childsOfTheUser = childrenRepository.findByParent(user);
+
+		if (user.equals(theTrip.getParent())) {// si c'est la personne qui a cr�e le trip
+			
 		for (Child child : childsOfTheUser) {
 			List<TripChild> tripChildsOfTheUser = tripChildRepository.findByTripAndChild(theTrip, child);
 			for (TripChild tripChild : tripChildsOfTheUser) {
 				tripChildRepository.delete(tripChild);
 			}
 		}
-
-		if (user.equals(theTrip.getParent())) {// si c'est la personne qui a cr�e le trip
+			
 			List<TripChild> tripChilds = tripChildRepository.findByTrip(theTrip);
 			List<TripParent> tripParents = tripParentRepository.findByTrip(theTrip);
 
