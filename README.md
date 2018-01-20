@@ -52,8 +52,9 @@ Il existe les fonctionnalités suivantes pour ce projet :
 * Chaque utilisateur peut consulter des trips : par exemple, http://localhost:8080/trips/1, :warning: Le 1 correspond a l'id du trip, il change en fonction du trip selectionné.
 * Chaque utilisateur peut creer des trips : par exemple, http://localhost:8080/trips/createTrips/1 :warning: Le 1 correspond a l'id, il change en fonction du trip selectionné.
 * Chaque utilisateur peut reserver ou supprimé un trip, par exemple voir les boutons prévus à cette effet : http://localhost:8080/trips/1
-* Chaque utilisateur peut ajouter des enfants à son compte : http://localhost:8080/yourProfil , puis le bouton Children, remplir le formulaire et le bouton Create Child crée l'enfant associé au compte de l'utilisateur connecté. 
-* Chaque utilisateur peut supprimer un des ces enfants : http://localhost:8080/yourProfil , puis le bouton Children, puis le bouton supprimer.
+* Chaque utilisateur peut ajouter des enfants à son compte : http://localhost:8080/yourProfil , puis, le bouton Children, remplir le formulaire et le bouton Create Child crée l'enfant associé au compte de l'utilisateur connecté. 
+* Chaque utilisateur peut supprimer un des ces enfants : http://localhost:8080/yourProfil , puis, le bouton Children, puis le bouton supprimer.
+* Chaque utilisateur peut annuler une réservation : http://localhost:8080/annulerReservation , puis, le bouton supprimer prevu pour.
 ### En tant que user non connecte
 
 Il existe les fonctionnalites suivantes pour ce projet : 
